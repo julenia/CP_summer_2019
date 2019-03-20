@@ -1,8 +1,8 @@
 public class Email {
     public static void main(String[] args) {
-        String email ="lubiedobre";
+        String email ="julia.jankowska@onet.eu";
         System.out.println("The email address is "+email);
-        if (email.indexOf("@")==-1)System.out.println("The email address is invalid - no @ sign");
+        if (!email.contains("@"))System.out.println("The email address is invalid - no @ sign");
         else{
             if (email.indexOf('.')==-1)System.out.println("The email address is invalid - no . sign");
             else{
