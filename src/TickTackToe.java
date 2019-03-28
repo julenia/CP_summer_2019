@@ -1,16 +1,22 @@
-//import java.util.stream.*;
+package src;
+
 public class TickTackToe {
     public static void main(String[] args) {
         //In this programme it is assumed that Player 1 plays X that has value 1, and Player 2 plays 0 with value -1.
         // Empty filled is noted as 0.
         int[][] game = new int[][]{
                 new int[]{1, -1, 1},
-                new int[]{-1, 1, -1},
+                new int[]{-1, -1, -1},
                 new int[]{-1, 1, 1},
         };
         boolean finish = false;
+        int diag1 = 0;
+        int diag2 = 0;
 
         for (int i = 0; i <= 2; i++) {
+            int row = 0;
+            int col = 0;
+
             for (int j = 0; j <= 2; j++) {
                 // Checking if there are empty spaces on the board.
                 if (game[i][j] == 0) {
@@ -24,35 +30,37 @@ public class TickTackToe {
             }
             else {
                 //Checking possible winning configurations in rows and columns
-                if ((game[0][i] + game[1][i] + game[2][i]) == 3) {
-                    System.out.println("Player 1 won, congrats!");
-                    break;
-                } else if ((game[0][i] + game[1][i] + game[2][i]) == -3) {
-                    System.out.println("Player 2 won, congrats!");
-                    break;
-                } else if (game[i][0] + game[i][1] + game[i][2] == 3) {
-                    System.out.println("Player 1 won, congrats!");
-                    break;
-                } else if (game[i][0] + game[i][1] + game[i][2] == -3) {
-                    System.out.println("Player 2 won, congrats!");
-                    break;
 
-                }
+                for (int j = 0; j <= 2; j++) {
+                    row = row + game[i][j];
+                    col = col + game[j][i];
+                    if (row == 3 || col == 3) {
+                        System.out.println("Player 1 won, congrats!");
+                        finish=true;
+                        break;
+
+                    } else if (row == -3 || col == -3) {
+                        System.out.println("Player 2 won, congrats!");
+                        finish = true;
+                        break;
+                    }
+                                    }
+                diag1 = diag1 + game[i][i];
+                diag2 = diag1 + game[i][2-i];
+            }
+
+            }
+        if (finish == false) {
+            if (diag1 == 3 || diag2 == 3) {
+                System.out.println("Player 1 won, congrats!");
+            } else if (diag1 == -3 || diag2 == -3) {
+                System.out.println("Player 2 won, congrats!");
+            } else {
+                System.out.println("Noone won this game :(");
             }
         }
-        //Checking possible winning configurations on diagonal
-        if (game[0][0] + game[1][1] + game[2][2] == 3) {
-            System.out.println("Player 1 won, congrats!");
-        } else if (game[0][0] + game[1][1] + game[2][2] == -3) {
-            System.out.println("Player 2 won, congrats!");
-        } else if (game[0][2] + game[1][1] + game[2][0] == 3) {
-            System.out.println("Player 1 won, congrats!");
-        } else if (game[0][2] + game[1][1] + game[2][0] == -3) {
-            System.out.println("Player 2 won, congrats!");
-        // When none of the above is true - there is no winner
-        } else System.out.println("Noone won this game :(");
-
 
     }
 
 }
+
