@@ -23,22 +23,23 @@ public class TickTackToe {
 
         Scanner fileScanner = new Scanner(file);
         while (fileScanner.hasNext()) {
+            for(int i=0;i<=(n-1);i++){
             String line = fileScanner.nextLine();
             String[] cells = line.split(";");
-            for(int i=0;i<=(n-1);i++){
+
                 //In this programme it is assumed that Player 1 plays X that has value 1, and Player 2 plays 0 with value -1.
                 // Empty filled is noted as 0.
 
                 for (int j=0;j<=(n-1);j++){
-                    String res = cells[i];
+                    String res = cells[j];
                     if (res.equals("X")){
-                        game[i][j] = 1;
+                        game[j][i] = 1;
                     }
                     else if (res.equals("O")){
-                        game[i][j] = -1;
+                        game[j][i] = -1;
                     }
                     else if (res.equals("") || res.equals(" ") || res.equals(0)) {
-                        game[i][j] = 0;
+                        game[j][i] = 0;
                         System.out.println("Game is not finished, keep on playing!");
                         break;
                     }
@@ -52,7 +53,7 @@ public class TickTackToe {
 
         }
 
-
+        outerloop:
         for (int i = 0; i <= (n-1); i++) {
             int row = 0;
             int col = 0;
@@ -72,21 +73,22 @@ public class TickTackToe {
                 //Checking possible winning configurations in rows and columns
 
                 for (int j = 0; j <= (n-1); j++) {
+
                     row = row + game[i][j];
                     col = col + game[j][i];
                     if (row == n || col == n) {
                         System.out.println("Player 1 won, congrats!");
                         finish=true;
-                        break;
+                        break outerloop;
 
                     } else if (row == -n || col == -n) {
                         System.out.println("Player 2 won, congrats!");
                         finish = true;
-                        break;
+                        break outerloop;
                     }
                                     }
                 diag1 = diag1 + game[i][i];
-                diag2 = diag1 + game[i][n-i];
+                diag2 = diag2 + game[i][(n-1-i)];
             }
 
             }
