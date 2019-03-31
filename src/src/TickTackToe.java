@@ -93,11 +93,13 @@ public class TickTackToe {
 
             }
         if (finish == false) {
+            //Checking if winning configurations is on diagonal
             if (diag1 == n || diag2 == n) {
                 System.out.println("Player 1 won, congrats!");
             } else if (diag1 == -n || diag2 == -n) {
                 System.out.println("Player 2 won, congrats!");
             } else {
+                //When there is no winner
                 System.out.println("Noone won this game :(");
             }
         }
