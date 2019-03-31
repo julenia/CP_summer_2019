@@ -23,7 +23,7 @@ public class FileOperations {
 
         System.out.println(file.length());
         System.out.println(file.getAbsolutePath());
-        System.out.println(file.getCanonicalPath());
+        //System.out.println(file.getCanonicalPath());
         System.out.println(file.getParentFile());
 
     }
