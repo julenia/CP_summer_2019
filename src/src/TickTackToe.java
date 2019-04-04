@@ -15,11 +15,7 @@ public class TickTackToe {
         String path = "C:/Users/julli/IdeaProjects/CP_summer_2019/ticktacktoe.csv";
         File file = new File(path);
 
-         int[][] game = new int[][]{
-                new int[]{0, 0, 0},
-                new int[]{0, 0, 0},
-                new int[]{0, 0, 0},
-        };
+        int[][] game = new int[n][n];
 
         Scanner fileScanner = new Scanner(file);
         while (fileScanner.hasNext()) {
