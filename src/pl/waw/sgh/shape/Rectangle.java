@@ -10,6 +10,11 @@ public class Rectangle extends shape {
         return parA*parB;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "parA=" + parA +
+                ", parB=" + parB +
+                '}';
+    }
 }
