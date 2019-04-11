@@ -2,8 +2,8 @@ package stock;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
+//import java.io.Path;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,14 +14,14 @@ public class stockCalc {
 
     public static void main(String[] args) throws IOException {
 
-        String[] dir = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT.csv"};
-        String[] out = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT1.csv"};
-        for (int p = 0; p < 2; p++) {
-            String path = dir[p];
-            //String path = "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT.csv";
-            //String path_out = "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT1.csv";
+       // String[] dir = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT.csv"};
+       // String[] out = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT1.csv"};
+       // for (int p = 0; p < 2; p++) {
+            //String path = dir[p];
+            String path = "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT.csv";
+            String path_out = "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT1.csv";
             File file = new File(path);
-            String path_out=out[p];
+            //String path_out=out[p];
             File outFile = new File(path_out);
             int n = 23;
             int m = 7;
@@ -90,7 +90,7 @@ public class stockCalc {
     }
 
 
-    }
+    //}
 
 
 
