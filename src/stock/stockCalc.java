@@ -85,7 +85,7 @@ public class stockCalc {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            fileScanner.close();
+          //  fileScanner.close();
         }
     }
 
