@@ -4,6 +4,7 @@ public class Triangle extends shape{
     public Triangle (double parA, double parB){
         super(parA, parB);
     }
+
     public Triangle(double parA){
         super(parA);
         parB=0.5*parA*Math.sqrt(2);
