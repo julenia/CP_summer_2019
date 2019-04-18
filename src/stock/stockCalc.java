@@ -14,16 +14,14 @@ public class stockCalc {
 
     public static void main(String[] args) throws IOException {
 
-       // String[] dir = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT.csv"};
-       // String[] out = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT1.csv"};
-       // for (int p = 0; p < 2; p++) {
-            //String path = dir[p];
-            String path = "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT.csv";
-            String path_out = "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT1.csv";
+       String[] dir = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT.csv"};
+       String[] out = {"C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\GOOG1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\IBM1.csv", "C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\MSFT1.csv"};
+       for (int p = 0; p <= 2; p++) {
+            String path = dir[p];
             File file = new File(path);
-            //String path_out=out[p];
+            String path_out=out[p];
             File outFile = new File(path_out);
-            int n = 23;
+            int n = 24;
             int m = 7;
             double stock[][] = new double[m][(n - 1)];
             String header[][] = new String[(m + 1)][1];
@@ -33,9 +31,9 @@ public class stockCalc {
             try {
                 FileWriter fw = new FileWriter(outFile, true);
                 BufferedWriter bw = new BufferedWriter(fw);
+                int i=0;
                 outerloop:
                 while (fileScanner.hasNext()) {
-                    for (int i = 0; i <= (n - 1); i++) {
                         String line = fileScanner.nextLine();
                         String[] cells = line.split(",");
                         for (int j = 0; j <= (m - 1); j++) {
@@ -57,19 +55,20 @@ public class stockCalc {
                             if (i == (n - 1) && j == (m - 1)) break outerloop;
 
                         }
+                        i++;
 
                     }
-                }
+
                 bw.append(header[m][0]);
                 bw.append(',');
                 bw.newLine();
                 bw.flush();
 
-                for (int i = 0; i <= (n - 2); i++) {
+                for (i = 0; i <= (n - 2); i++) {
                     stock[(m - 1)][i] = (stock[3][i] - stock[0][i]) / stock[0][i];
 
                 }
-                for (int i = 0; i <= (n - 2); i++) {
+                for (i = 0; i <= (n - 2); i++) {
                     bw.append(date[0][i]);
                     bw.append(',');
                     for (int j = 0; j <= (m - 1); j++) {
@@ -85,12 +84,12 @@ public class stockCalc {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-          //  fileScanner.close();
+
         }
     }
 
 
-    //}
+    }
 
 
 
