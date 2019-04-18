@@ -1,4 +1,4 @@
-package pl.waw.sgh.shape;
+package src.pl.waw.sgh.shape;
 
 public class Triangle extends shape{
     public Triangle (double parA, double parB){
@@ -12,6 +12,8 @@ public class Triangle extends shape{
     public double calcSurface() {
         return 0.5*parA*parB;
     }
+
+
 
     @Override
     public String toString() {
