@@ -1,4 +1,4 @@
-package src;
+package src.pl.waw.sgh;
 
 import java.io.File;
 import java.io.FileNotFoundException;
