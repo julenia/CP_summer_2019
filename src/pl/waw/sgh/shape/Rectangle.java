@@ -1,6 +1,6 @@
 package src.pl.waw.sgh.shape;
 
-public class Rectangle extends shape {
+public class Rectangle extends shape implements PerimeterCalculation {
 
     public Rectangle(double parA, double parB) {
         super(parA, parB);
@@ -8,6 +8,11 @@ public class Rectangle extends shape {
 
     public double  calcSurface() {
         return parA*parB;
+    }
+
+    @Override
+    public double calcPerimeter() {
+        return 2*parA+2*parB;
     }
 
     @Override
