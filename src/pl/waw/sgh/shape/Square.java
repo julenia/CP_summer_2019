@@ -1,4 +1,4 @@
-package src.pl.waw.sgh.shape;
+package pl.waw.sgh.shape;
 
 public class Square extends shape {
     public Square(double parA){

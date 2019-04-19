@@ -19,6 +19,7 @@ public class FileOperations {
         while (fileScanner.hasNext()) {
             String line = fileScanner.nextLine();
             System.out.println(line);
+
         }
 
         System.out.println(file.length());

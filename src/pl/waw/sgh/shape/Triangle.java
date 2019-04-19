@@ -1,6 +1,6 @@
-package src.pl.waw.sgh.shape;
+package pl.waw.sgh.shape;
 
-public class Triangle extends src.pl.waw.sgh.shape.shape {
+public class Triangle extends pl.waw.sgh.shape.shape {
     public Triangle (double parA, double parB){
         super(parA, parB);
     }

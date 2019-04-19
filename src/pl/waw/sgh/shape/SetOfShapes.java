@@ -1,4 +1,4 @@
-package src.pl.waw.sgh.shape;
+package pl.waw.sgh.shape;
 
 import java.util.HashSet;
 import java.util.Set;
