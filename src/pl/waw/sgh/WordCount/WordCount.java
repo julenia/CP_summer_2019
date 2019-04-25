@@ -1,4 +1,4 @@
-package pl.waw.sgh.WordCount;
+package src.pl.waw.sgh.WordCount;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ public class WordCount {
         String path="C:\\Users\\julli\\IdeaProjects\\CP_summer_2019\\Australia_dingo_attack.txt";
         File file = new File(path);
         Scanner fileScanner = new Scanner(file);
-        Map<String, Integer> myMapWord=new HashMap<>();
+        Map<String, Integer> myMapWord=new HashMap<String, Integer>();
         while (fileScanner.hasNext()) {
             String line = fileScanner.nextLine();
             line = line.toLowerCase();

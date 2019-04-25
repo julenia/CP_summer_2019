@@ -1,4 +1,4 @@
-package pl.waw.sgh.shape;
+package src.pl.waw.sgh.shape;
 
 public interface PerimeterCalculation {
 

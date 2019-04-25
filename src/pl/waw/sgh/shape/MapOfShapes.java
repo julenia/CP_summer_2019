@@ -1,4 +1,4 @@
-package pl.waw.sgh.shape;
+package src.pl.waw.sgh.shape;
 
 import java.util.Collection;
 import java.util.HashMap;
