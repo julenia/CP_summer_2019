@@ -1,4 +1,4 @@
-package pl.waw.sgh;
+package src.pl.waw.sgh;
 
 public class Blocks {
 

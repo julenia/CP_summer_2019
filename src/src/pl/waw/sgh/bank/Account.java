@@ -51,11 +51,14 @@ public abstract class Account {
     }
 
     public void deposit(Double toDeposit){
-        balance = balance.add(BigDecimal.valueOf(toDeposit));
+        if(toDeposit<0) System.out.println("Error: Sum to deposit smaller than 0");
+        else balance = balance.add(BigDecimal.valueOf(toDeposit));
     }
 
     public void charge(Double toCharge){
-        balance = balance.subtract(BigDecimal.valueOf(toCharge));
+        if(toCharge<0) System.out.println("Sum to charge smaller than 0");
+        else if (balance.compareTo(BigDecimal.valueOf(toCharge))>0) System.out.println("Error: Not enough money to perform operation");
+        else balance = balance.subtract(BigDecimal.valueOf(toCharge));
 
     }
 

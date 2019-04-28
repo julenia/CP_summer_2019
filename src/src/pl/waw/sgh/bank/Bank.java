@@ -49,17 +49,31 @@ public class Bank {
                 return acc;
             }
         }
+        System.out.println("This account does not exist");
         return null;
+
     }
 
     public void transfer(Integer fromAccID, Integer toAccID, double toTransfer){
         transfer(findAccountByID(fromAccID), findAccountByID(toAccID), toTransfer);
     }
 
-    public void transfer(Account fromAcc, Account toAcc, double toTransfer){
-        fromAcc.charge(toTransfer);
-        toAcc.deposit(toTransfer);
+    public void transfer(Account fromAcc, Account toAcc, double toTransfer) {
+        if (toTransfer < 0) System.out.println("Error: sum to transfer cannot be negative");
+        else {
+            for (Account acc : accountList) {
+                if (acc.equals(fromAcc)) {
+                    for (Account ac : accountList) {
+                        if (ac.equals(toAcc)) {
+                            fromAcc.charge(toTransfer);
+                            toAcc.deposit(toTransfer);
+                        }
 
+                    }
+                }
+            }
+
+        }
     }
 
     @Override

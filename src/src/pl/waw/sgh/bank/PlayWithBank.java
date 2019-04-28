@@ -14,7 +14,7 @@ public class PlayWithBank {
 
         System.out.println(bank);
 
-        a1.deposit(140.0);
+        a1.deposit(20.0);
         System.out.println(a1);
 
         a2.charge(300.0);
