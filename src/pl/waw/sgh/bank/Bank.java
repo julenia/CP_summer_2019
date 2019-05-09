@@ -54,12 +54,15 @@ public class Bank {
 
     }
 
-    public void transfer(Integer fromAccID, Integer toAccID, double toTransfer){
+    public void transfer(Integer fromAccID, Integer toAccID, double toTransfer) throws NotEnoughMoneyException {
         transfer(findAccountByID(fromAccID), findAccountByID(toAccID), toTransfer);
     }
 
-    public void transfer(Account fromAcc, Account toAcc, double toTransfer) {
-        if (toTransfer < 0) System.out.println("Error: sum to transfer cannot be negative");
+    public void transfer(Account fromAcc, Account toAcc, double toTransfer) throws NotEnoughMoneyException {
+        fromAcc.charge(toTransfer);
+        toAcc.deposit(toTransfer);
+
+    /*    if (toTransfer < 0) System.out.println("Error: sum to transfer cannot be negative");
         else {
             for (Account acc : accountList) {
                 if (acc.equals(fromAcc)) {
@@ -71,10 +74,10 @@ public class Bank {
 
                     }
                 }
-            }
+           }
 
         }
-    }
+ */    }
 
     @Override
     public String toString() {

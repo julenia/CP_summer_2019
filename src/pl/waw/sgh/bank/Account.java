@@ -55,10 +55,13 @@ public abstract class Account {
         else balance = balance.add(BigDecimal.valueOf(toDeposit));
     }
 
-    public void charge(Double toCharge){
-        if(toCharge<0) System.out.println("Sum to charge smaller than 0");
-        else if (balance.compareTo(BigDecimal.valueOf(toCharge))>0) System.out.println("Error: Not enough money to perform operation");
-        else balance = balance.subtract(BigDecimal.valueOf(toCharge));
+    public void charge(Double toCharge) throws NotEnoughMoneyException {
+        if(balance.doubleValue()<toCharge)
+            throw new NotEnoughMoneyException("Your balance is too low " + balance + " requested charge "+ toCharge);
+            balance = balance.subtract(BigDecimal.valueOf(toCharge));
+        //if(toCharge<0) System.out.println("Sum to charge smaller than 0");
+        //else if (balance.compareTo(BigDecimal.valueOf(toCharge))>0) System.out.println("Error: Not enough money to perform operation");
+        //else balance = balance.subtract(BigDecimal.valueOf(toCharge));
 
     }
 
