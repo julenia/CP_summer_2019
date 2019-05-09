@@ -42,42 +42,36 @@ public class Bank {
         return newAccount(customer, currency,  false);
     }
 
-    public Account findAccountByID(Integer accID){
+    public Account findAccountByID(Integer accID) throws NonExistitngAccountException {
 
         for (Account acc : accountList){
             if (acc.getAccountID().equals(accID)){
                 return acc;
             }
         }
-        System.out.println("This account does not exist");
-        return null;
+        throw new NonExistitngAccountException("This account does not exist "+accID);
+
 
     }
 
-    public void transfer(Integer fromAccID, Integer toAccID, double toTransfer) throws NotEnoughMoneyException {
+    public void transfer(Integer fromAccID, Integer toAccID, double toTransfer) throws BankException {
         transfer(findAccountByID(fromAccID), findAccountByID(toAccID), toTransfer);
     }
 
-    public void transfer(Account fromAcc, Account toAcc, double toTransfer) throws NotEnoughMoneyException {
-        fromAcc.charge(toTransfer);
-        toAcc.deposit(toTransfer);
-
-    /*    if (toTransfer < 0) System.out.println("Error: sum to transfer cannot be negative");
-        else {
-            for (Account acc : accountList) {
-                if (acc.equals(fromAcc)) {
-                    for (Account ac : accountList) {
-                        if (ac.equals(toAcc)) {
-                            fromAcc.charge(toTransfer);
-                            toAcc.deposit(toTransfer);
-                        }
-
-                    }
-                }
-           }
-
+    public void transfer(Account fromAcc, Account toAcc, double toTransfer) throws NotEnoughMoneyException, NonExistitngAccountException {
+        for (Account acc : accountList) {
+            if (acc.equals(fromAcc)) {
+                fromAcc.charge(toTransfer);
+            }
+            else throw new NonExistitngAccountException("This account" + fromAcc + "does not exist ");
         }
- */    }
+        for (Account ac : accountList) {
+            if (ac.equals(toAcc)) {
+                toAcc.deposit(toTransfer);
+            } else throw new NonExistitngAccountException("This account" + toAcc + "does not exist ");
+        }
+        }
+
 
     @Override
     public String toString() {

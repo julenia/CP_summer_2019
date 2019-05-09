@@ -18,15 +18,15 @@ public class PlayWithBank {
             a1.deposit(20.0);
             System.out.println(a1);
 
-            a2.charge(300.0);
+            a1.charge(5.0);
             System.out.println(a2);
 
-            bank.transfer(1001, 1002, 400);
+            bank.transfer(1001, 1008, 400);
             System.out.println(a1);
             System.out.println(a2);
             System.out.println(a3);
-        } catch (Exception e){
-            System.err.println(e.getMessage());
+        } catch (BankException be){
+            System.err.println(be.getMessage());
         }
 
 
