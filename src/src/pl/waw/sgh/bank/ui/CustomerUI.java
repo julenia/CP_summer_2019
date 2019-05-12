@@ -3,12 +3,15 @@ package src.pl.waw.sgh.bank.ui;
 import javax.swing.*;
 
 public class CustomerUI {
-    private JTextPane Customer;
     private JLabel textFieldLastName;
     private JLabel textFieldEmail;
-    private JButton buttonSave;
-    private JButton button2;
     private JPanel mainPanel;
+    private JTextField LastName;
+    private JTextField FirstName;
+    private JTextField email;
+    private JButton saveButton;
+    private JButton OKButton;
+    private JTextPane customerTextPane;
 
     public CustomerUI(){
         super();
