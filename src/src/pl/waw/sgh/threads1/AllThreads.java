@@ -18,7 +18,7 @@ public class AllThreads {
         MyFirstThread mft1 = new MyFirstThread("Thread 1", allThreads);
         //Thread t1 = new Thread(mft1);
         //mft1.run();
-        MyFirstThread mft2 = new MyFirstThread("Thread 2", allThreads);
+        MyFirstThread mft2 = new MyFirstThread("Thread 2", allThreads, mft1);
         //Thread t2 = new Thread(mft2);
         mft1.start();
         mft2.start();
