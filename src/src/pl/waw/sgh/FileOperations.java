@@ -20,6 +20,7 @@ public class FileOperations {
             String line = fileScanner.nextLine();
             System.out.println(line);
 
+
         }
 
         System.out.println(file.length());

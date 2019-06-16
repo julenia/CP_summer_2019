@@ -41,6 +41,15 @@ public class Bank {
     public Account newSavingsAccount(Customer customer, String currency){
         return newAccount(customer, currency,  false);
     }
+    public void deleteAccount(Account acc) {
+        accountList.remove(acc);
+    }
+    public Customer findFirstCustomer() {
+        if (customerList.size()>0)
+            return customerList.get(0);
+        else
+            return null;
+    }
 
     public Account findAccountByID(Integer accID) throws NonExistitngAccountException {
 
@@ -71,6 +80,34 @@ public class Bank {
             } else throw new NonExistitngAccountException("This account" + toAcc + "does not exist ");
         }
         }
+
+    public Customer prevCustomer(Customer curCust){
+        int curCustIdx = customerList.indexOf(curCust);
+        if (curCustIdx>0){
+            return customerList.get(curCustIdx-1);
+        } else {
+            return null;
+        }
+    }
+    public Customer nextCustomer(Customer curCust){
+        int curCustIdx = customerList.indexOf(curCust);
+        if (curCustIdx< customerList.size()-1){
+            return customerList.get(curCustIdx+1);
+        } else {
+            return null;
+        }
+    }
+
+    public List<Account> findAccountByCustomer(Customer cust) {
+        List<Account> acList = new ArrayList<>();
+        for (Account acc : accountList) {
+            if (acc.getCustomer()==cust)
+                acList.add(acc);
+        }
+        return acList;
+    }
+
+
 
 
     @Override
