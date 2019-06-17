@@ -11,14 +11,15 @@ public class Service {
     private Customer customer;
     private Integer serviceID;
     private Integer nSubServices;
-    private Integer nS;
+    private Double totalSubServices;
 
-    public Service (Customer customer, String serviceName, Double servicePrice, Integer nSubServices, Integer serviceID) {
+    public Service (Customer customer, String serviceName, Double servicePrice, Integer nSubServices, Integer serviceID, Double totalSubServices) {
         this.customer=customer;
         this.serviceName=serviceName;
         this.servicePrice=servicePrice;
         this.nSubServices=nSubServices;
         this.serviceID=serviceID;
+        this.totalSubServices=totalSubServices;
     }
     public Customer getCustomer (){return customer;}
 
@@ -40,6 +41,10 @@ public class Service {
 
     public void setnSubServices(Integer nSubServices){this.nSubServices=nSubServices;}
 
+    public Double getTotalSubServices() {return totalSubServices;}
+
+    public void  setTotalSubServices(Double totalSubServices) {this.totalSubServices=totalSubServices;}
+
 
     @Override
     public String toString() {
@@ -49,7 +54,7 @@ public class Service {
                 ", customer=" + customer +
                 ", serviceID=" + serviceID +
                 ", nSubServices=" + nSubServices +
-                ", nS=" + nS +
+                ", totalSubServices=" +totalSubServices +
                 '}';
     }
 }

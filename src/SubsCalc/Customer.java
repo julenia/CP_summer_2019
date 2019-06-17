@@ -77,20 +77,19 @@ public class Customer {
     }
 
     public Double getCustomerVAT() {
-        return customerPerc;
+        return customerVAT;
     }
 
     public void setCustomerVAT(Double customerVAT) {
         this.customerVAT = customerVAT;
     }
 
-    public Double getCustomerPerc(Double customerPerc) {
+    public Double getCustomerPerc() {
         return customerPerc;
     }
     public void setCustomerPerc(Double customerPerc){
         this.customerPerc = customerPerc;
     }
-
 
     @Override
     public String toString() {

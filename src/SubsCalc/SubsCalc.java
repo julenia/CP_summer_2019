@@ -16,10 +16,12 @@ public class SubsCalc {
         Double total=0.0;
         Customer c1 = masterUser.newCustomer(1, "Jan", "Kowalski", "XXX", nS, 0.0,0.23, 0.33);
         Customer c2 = masterUser.newCustomer(2, "Anna", "Nowak", "YYY", 2, 0.0, 0.23, 0.33);
-        Service s1= masterUser.NewService(c1, "Telefon", 20.0, 2, 1000);
-        Service s2 = masterUser.NewService(c1, "Internet", 30.0, 3, 1001);
+        Service s1= masterUser.NewService(c1, "Telefon", 20.0, 2, 1000, 0.0);
+        Service s2 = masterUser.NewService(c1, "Internet", 30.0, 3, 1001, 0.0);
+        SubService ss1=masterUser.NewSubService(c1, s1, "tel tata", 15.0);
         System.out.println(masterUser.ServiceSumTotal(c1));
-        System.out.println(masterUser);
+        System.out.println(masterUser.calcPercNetto(c1));
+
 
 
 
