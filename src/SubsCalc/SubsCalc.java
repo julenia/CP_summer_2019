@@ -14,11 +14,19 @@ public class SubsCalc {
         System.out.println("Ile usług chcesz dodać? ");
         Integer nS=in.nextInt();
         Double total=0.0;
-        Customer c1 = masterUser.newCustomer(1, "Jan", "Kowalski", "XXX", nS, total);
-        Service [] service = new Service[nS];
+        Customer c1 = masterUser.newCustomer(1, "Jan", "Kowalski", "XXX", nS, 0.0,0.23, 0.33);
+        Customer c2 = masterUser.newCustomer(2, "Anna", "Nowak", "YYY", 2, 0.0, 0.23, 0.33);
+        Service s1= masterUser.NewService(c1, "Telefon", 20.0, 2, 1000);
+        Service s2 = masterUser.NewService(c1, "Internet", 30.0, 3, 1001);
+        System.out.println(masterUser.ServiceSumTotal(c1));
+        System.out.println(masterUser);
 
-        Map customerServices = new HashMap();
-        for (int i=1; i<=nS; i++){
+
+
+       // Service [] service = new Service[nS];
+
+       //2 Map customerServices = new HashMap();
+    /*    for (int i=1; i<=nS; i++){
 
             System.out.print("Nazwa usługi: ");
             String ServiceName = in.next();
@@ -29,10 +37,12 @@ public class SubsCalc {
             customerServices.put(ServiceName, ServicePrice);
             Service s=masterUser.NewService(c1, ServiceName, ServicePrice, nSS, i);
             s=service[(i-1)];
+   */     }
 
 
-        }
-        System.out.println(masterUser);
+     //   System.out.println(masterUser.getCustBalance());
+     //   System.out.println(masterUser);
+
 
 
 
@@ -41,7 +51,7 @@ public class SubsCalc {
 
 
     }
-}
+
 
   /*      Map customerServices = new HashMap();
         //User should fill it in

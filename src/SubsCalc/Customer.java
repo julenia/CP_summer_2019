@@ -13,13 +13,19 @@ public class Customer {
 
     private Double customerBalance;
 
-    public Customer(Integer custID, String firstName, String lastName, String companyName, Integer numbServices, Double customerBalance) {
+    private Double customerVAT;
+
+    private Double customerPerc;
+
+    public Customer(Integer custID, String firstName, String lastName, String companyName, Integer numbServices, Double customerBalance, Double customerVAT, Double customerPerc) {
         this.custID = custID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyName = companyName;
         this.numbServices = numbServices;
         this.customerBalance = customerBalance;
+        this.customerVAT = customerVAT;
+        this.customerPerc = customerPerc;
     }
 
     public Integer getCustID() {
@@ -54,27 +60,49 @@ public class Customer {
         this.companyName = companyName;
     }
 
-    public Integer getNumbServices() {return numbServices;}
+    public Integer getNumbServices() {
+        return numbServices;
+    }
 
-    public void setNumbServices(Integer numbServices){
+    public void setNumbServices(Integer numbServices) {
         this.numbServices = numbServices;
     }
 
-    public Double getCustomerBalance() {return customerBalance;}
+    public Double getCustomerBalance() {
+        return customerBalance;
+    }
 
-    public void setCustomerBalance (Double customerBalance) {
+    public void setCustomerBalance(Double customerBalance) {
         this.customerBalance = customerBalance;
     }
+
+    public Double getCustomerVAT() {
+        return customerPerc;
+    }
+
+    public void setCustomerVAT(Double customerVAT) {
+        this.customerVAT = customerVAT;
+    }
+
+    public Double getCustomerPerc(Double customerPerc) {
+        return customerPerc;
+    }
+    public void setCustomerPerc(Double customerPerc){
+        this.customerPerc = customerPerc;
+    }
+
 
     @Override
     public String toString() {
         return "Customer{" +
-                "customerID=" + custID +
+                "custID=" + custID +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", company='" + companyName + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", numbServices=" + numbServices +
+                ", customerBalance=" + customerBalance +
+                ", customerVAT=" + customerVAT +
+                ", customerPerc=" + customerPerc +
                 '}';
     }
-
-
 }
