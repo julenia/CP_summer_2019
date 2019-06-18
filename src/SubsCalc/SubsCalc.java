@@ -1,71 +1,101 @@
 package SubsCalc;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SubsCalc {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         MasterUser masterUser = new MasterUser("Admin");
-
-
-
         Scanner in = new Scanner(System.in);
-        System.out.println("Ile usług chcesz dodać? ");
-        Integer nS=in.nextInt();
-        Double total=0.0;
-        Customer c1 = masterUser.newCustomer(1, "Jan", "Kowalski", "XXX", nS, 0.0,0.23, 0.33);
-        Customer c2 = masterUser.newCustomer(2, "Anna", "Nowak", "YYY", 2, 0.0, 0.23, 0.33);
-        Service s1= masterUser.NewService(c1, "Telefon", 20.0, 2, 1000, 0.0);
-        Service s2 = masterUser.NewService(c1, "Internet", 30.0, 3, 1001, 0.0);
-        SubService ss1=masterUser.NewSubService(c1, s1, "tel tata", 15.0);
-        System.out.println(masterUser.ServiceSumTotal(c1));
-        System.out.println(masterUser.calcPercNetto(c1));
-
-
-
-
-       // Service [] service = new Service[nS];
-
-       //2 Map customerServices = new HashMap();
-    /*    for (int i=1; i<=nS; i++){
-
-            System.out.print("Nazwa usługi: ");
-            String ServiceName = in.next();
-            System.out.print("Cena usługi: ");
-            Double ServicePrice = in.nextDouble();
-            System.out.println("Ile podusług chcesz dodać? ");
-            int nSS = in.nextInt();
-            customerServices.put(ServiceName, ServicePrice);
-            Service s=masterUser.NewService(c1, ServiceName, ServicePrice, nSS, i);
-            s=service[(i-1)];
-   */     }
-
-
-     //   System.out.println(masterUser.getCustBalance());
-     //   System.out.println(masterUser);
-
-
-
-
-
-
-
-
+        System.out.print("Ilu klientów chcesz dodać? ");
+        Integer nCustomer = in.nextInt();
+        Customer cust[] = new Customer[nCustomer];
+        String dir= "C:\\Users\\julli\\OneDrive\\Pulpit\\UNI\\compProg\\exportCenaUslug.csv";
+        File file = new File(dir);
+        FileWriter fw = new FileWriter(file, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.append("Rozliczenie cen usług");
+        bw.newLine();
+        for (int j = 0; j < nCustomer; j++) {
+            try {
+                bw.append("Klient: ");
+                bw.newLine();
+                bw.append("Imie" + ',');
+                bw.append("Nazwisko" + ',');
+                bw.append("Firma" + ',');
+                bw.append("Wysokość podatku VAT" + ',');
+                bw.append("Procent za usługę" + ',');
+                bw.newLine();
+                System.out.print("Imię klienta nr " + (j + 1) + " : ");
+                String firstName = in.next();
+                System.out.print("Nazwisko klienta " + (j + 1) + " : ");
+                String lastName = in.next();
+                System.out.print("Nazwa firmy klienta " + firstName + " " + lastName + " : ");
+                String companyName = in.next();
+                System.out.print("Liczba usług dla klienta " + firstName + " " + lastName + " : ");
+                Integer numberServices = in.nextInt();
+                System.out.print("Podatek VAT dla klienta " + firstName + " " + lastName + " : ");
+                Double vat = in.nextDouble();
+                System.out.print("Procent dla klienta " + firstName + " " + lastName + " : ");
+                Double percVal = in.nextDouble();
+                if (percVal >= 1 && percVal <= 100) {
+                percVal = percVal / 100;
+                    }
+                cust[j] = masterUser.newCustomer(firstName, lastName, companyName, numberServices, 0.0, vat, percVal);
+                bw.append(firstName + ',' + lastName + ',' + companyName + ',' + vat + ',' + percVal );
+                bw.newLine();
+                bw.newLine();
+                Service serv[] = new Service[numberServices];
+                for (int k = 0; k < numberServices; k++) {
+                    System.out.print("Nazwa usługi nr " + (k + 1) + " dla klienta " + firstName + " " + lastName + " : ");
+                    String serviceName = in.next();
+                    System.out.print("Cena usługi nr " + (k + 1) + " dla klienta " + firstName + " " + lastName + " : ");
+                    Double servicePrice = in.nextDouble();
+                    System.out.print("Ilość podusług dla usługi " + (k + 1) + " dla klienta " + firstName + " " + lastName + " : ");
+                    Integer nSubServices = in.nextInt();
+                    serv[k] = masterUser.NewService(cust[j], serviceName, servicePrice, nSubServices, 0.0);
+                    String[] subsNames = new String[serv[k].getnSubServices()];
+                    Double[] subsPrices = new Double[serv[k].getnSubServices()];
+                    bw.append(','+ "Nazwa usługi" + ',' + "Cena usługi");
+                    bw.newLine();
+                    bw.append(',' + serviceName + ',' + servicePrice);
+                    bw.newLine();
+                    bw.newLine();
+                    for (int i = 0; i < nSubServices; i++) {
+                        System.out.print("Nazwa podusługi nr " + (i + 1) + " : ");
+                        subsNames[i] = in.next();
+                        System.out.print("Cena podusługi nr " + (i + 1) + " : ");
+                        subsPrices[i] = in.nextDouble();
+                        bw.append(","+ ','+ "Nazwa usługi dodatkowej" +','+ "Cena usługi dodatkowej");
+                        bw.newLine();
+                        bw.append(","+','+subsNames[i]+','+subsPrices[i]);
+                        bw.newLine();
+                    }
+                    masterUser.MultipleSub(serv[k], subsNames, subsPrices);
+                }
+                System.out.println("Suma brutto wszystkich usług: " + masterUser.ServiceSumTotal(cust[j]));
+                System.out.println("Suma netto wszystkich usług: " + masterUser.Netto(cust[j]));
+                System.out.println("Wysokość podatku VAT :" + masterUser.calcVAT(cust[j]));
+                System.out.println("Kwota Brutto za usługe: " + masterUser.calcPercBrutto(cust[j]));
+                System.out.println("Kwota Netto za usługę: " + masterUser.calcPercNetto(cust[j]));
+                bw.append("Suma brutto wszystkich usług:"+','+masterUser.ServiceSumTotal(cust[j]));
+                bw.newLine();
+                bw.append("Suma netto wszystkich usług:"+','+masterUser.Netto(cust[j]));
+                bw.newLine();
+                bw.append("Wysokość podatku VAT:"+','+masterUser.calcVAT(cust[j]));
+                bw.newLine();
+                bw.append("Kwota brutto za usługi:"+','+masterUser.calcPercBrutto(cust[j]));
+                bw.newLine();
+                bw.append("Kwota netto za usługi:"+','+masterUser.calcPercNetto(cust[j]));
+                bw.newLine();
+                bw.flush();
+            }catch (InputMismatchException e){
+                throw new InputMismatchException("Podałeś zły format danych");}
+            bw.newLine();
+            bw.newLine();
+        }
+        bw.flush();
+        bw.close();
     }
-
-
-  /*      Map customerServices = new HashMap();
-        //User should fill it in
-        int nservice=2;
-        //User should fill it in (for every service separatelly
-        int nSS=1;
-
-
-
-
-
-    }
-
 }
-*/

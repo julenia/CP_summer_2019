@@ -6,9 +6,12 @@ import java.util.List;
 public class MasterUser {
 
     private String UserName;
-    private Double custBalance;
+    private Integer lastCustomer=0;
+    private Integer lastService=0;
+
 
     public List<Customer> customerList = new ArrayList<Customer>();
+
     public List<Service> serviceList = new ArrayList<Service>();
     public List<SubService> subServiceList = new ArrayList<SubService>();
 
@@ -16,26 +19,22 @@ public class MasterUser {
         this.UserName = UserName;
     }
 
-    public Customer newCustomer(Integer custID, String firstName, String lastName, String company, Integer numbServices, Double CustomerBalance, Double customerVAT, Double customerPerc) {
-        Customer cust = new Customer(custID, firstName, lastName, company, numbServices, CustomerBalance, customerVAT, customerPerc);
+
+    public Customer newCustomer(String firstName, String lastName, String company, Integer numbServices, Double CustomerBalance, Double customerVAT, Double customerPerc) {
+        Customer cust = new Customer(lastCustomer++, firstName, lastName, company, numbServices, CustomerBalance, customerVAT, customerPerc);
         customerList.add(cust);
         return cust;
     }
 
-    public Double getCustBalance() {
-        return custBalance;
-    }
 
-    public void setCustBalance() {
-        this.custBalance = custBalance;
-    }
-
-    public Service NewService(Customer customer, String serviceName, Double servicePrice, Integer nSubServices, Integer serviceID, Double totalSubServices) {
+    public Service NewService(Customer customer, String serviceName, Double servicePrice, Integer nSubServices, Double totalSubServices) {
         //Creates new services and adds them to the service list
-        Service serv = new Service(customer, serviceName, servicePrice, nSubServices, serviceID, totalSubServices);
+        Service serv = new Service(customer, serviceName, servicePrice, nSubServices, lastService++, totalSubServices);
         serviceList.add(serv);
         return serv;
     }
+
+
 
     public SubService NewSubService(Customer customer, Service service, String subServiceName, Double subServicePrice){
         SubService subserv = new SubService(customer, service, subServiceName, subServicePrice);
@@ -43,9 +42,22 @@ public class MasterUser {
         return subserv;
     }
 
-    public void MultipleSub(Service service){
+    public void MultipleSub(Service service, String[] SubsNames, Double[] SubsPrices){
         Integer nS=service.getnSubServices();
-        f
+        for (Integer i=0; i<nS; i++){
+            NewSubService(service.getCustomer(), service, SubsNames[i], SubsPrices[i]);
+        }
+    }
+
+    public void deleteCustomer(Customer customer){
+        customerList.remove(customer);
+    }
+    public void deleteService(Service service){
+        serviceList.remove(service);
+    }
+
+    public void deleteSubService(SubService subService){
+        serviceList.remove(subService);
     }
 
     public Double subServiceSum(Service service){
@@ -91,11 +103,6 @@ public class MasterUser {
         Double perc=customer.getCustomerPerc();
         return bal*perc;
     }
-
-
-
-
-
 
     @Override
     public String toString() {
